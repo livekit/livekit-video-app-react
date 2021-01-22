@@ -1,7 +1,6 @@
+import { Participant, TrackPublication } from 'livekit-client';
 import { useEffect, useState } from 'react';
 import useVideoContext from '../useVideoContext/useVideoContext';
-
-import { Participant, TrackPublication } from 'twilio-video';
 
 /*
   Returns the participant that is sharing their screen (if any). This hook assumes that only one participant

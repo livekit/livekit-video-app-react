@@ -1,9 +1,9 @@
-import React from 'react';
-import AboutDialog from './AboutDialog';
 import { render } from '@testing-library/react';
+import React from 'react';
 import { useAppState } from '../../state';
+import AboutDialog from './AboutDialog';
 
-jest.mock('twilio-video', () => ({ version: '1.2', isSupported: true }));
+jest.mock('livekit-client', () => ({ version: '1.2', isSupported: true }));
 jest.mock('../../../package.json', () => ({ version: '1.3' }));
 jest.mock('../../state');
 

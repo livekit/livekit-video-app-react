@@ -1,10 +1,10 @@
-import React from 'react';
-import AvatarIcon from '../../../../icons/AvatarIcon';
 import { makeStyles, Theme, Typography } from '@material-ui/core';
-import LocalAudioLevelIndicator from '../../../LocalAudioLevelIndicator/LocalAudioLevelIndicator';
-import { LocalVideoTrack } from 'twilio-video';
-import VideoTrack from '../../../VideoTrack/VideoTrack';
+import { LocalVideoTrack } from 'livekit-client';
+import React from 'react';
 import useVideoContext from '../../../../hooks/useVideoContext/useVideoContext';
+import AvatarIcon from '../../../../icons/AvatarIcon';
+import LocalAudioLevelIndicator from '../../../LocalAudioLevelIndicator/LocalAudioLevelIndicator';
+import VideoTrack from '../../../VideoTrack/VideoTrack';
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {

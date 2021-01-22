@@ -1,7 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import EventEmitter from 'events';
-import { Room } from 'twilio-video';
-
+import { Room } from 'livekit-client';
 import useHandleOnDisconnect from './useHandleOnDisconnect';
 
 describe('the useHandleonDisconnect hook', () => {

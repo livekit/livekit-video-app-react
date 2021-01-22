@@ -1,5 +1,5 @@
+import { LocalAudioTrack } from 'livekit-client';
 import React from 'react';
-import { LocalAudioTrack } from 'twilio-video';
 import useVideoContext from '../../hooks/useVideoContext/useVideoContext';
 import AudioLevelIndicator from '../AudioLevelIndicator/AudioLevelIndicator';
 

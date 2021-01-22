@@ -1,22 +1,22 @@
-import { useState, useEffect } from 'react';
-import { LocalAudioTrack, LocalVideoTrack, RemoteAudioTrack, RemoteVideoTrack } from 'twilio-video';
+import { LocalAudioTrack, LocalVideoTrack, RemoteAudioTrack, RemoteVideoTrack, TrackEvent } from 'livekit-client';
+import { useEffect, useState } from 'react';
 
 type TrackType = LocalAudioTrack | LocalVideoTrack | RemoteAudioTrack | RemoteVideoTrack | undefined;
 
 export default function useIsTrackEnabled(track: TrackType) {
-  const [isEnabled, setIsEnabled] = useState(track ? track.isEnabled : false);
+  const [isEnabled, setIsEnabled] = useState(track ? track.isMuted : false);
 
   useEffect(() => {
-    setIsEnabled(track ? track.isEnabled : false);
+    setIsEnabled(track ? track.isMuted : false);
 
     if (track) {
       const setEnabled = () => setIsEnabled(true);
       const setDisabled = () => setIsEnabled(false);
-      track.on('enabled', setEnabled);
-      track.on('disabled', setDisabled);
+      track.on(TrackEvent.Unmuted, setEnabled);
+      track.on(TrackEvent.Muted, setDisabled);
       return () => {
-        track.off('enabled', setEnabled);
-        track.off('disabled', setDisabled);
+        track.off(TrackEvent.Unmuted, setEnabled);
+        track.off(TrackEvent.Muted, setDisabled);
       };
     }
   }, [track]);

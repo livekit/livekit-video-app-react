@@ -1,8 +1,8 @@
 import { act, renderHook } from '@testing-library/react-hooks';
+import Livekit from 'livekit-client';
 import { SELECTED_AUDIO_INPUT_KEY, SELECTED_VIDEO_INPUT_KEY } from '../../../constants';
-import useLocalTracks from './useLocalTracks';
-import Video from 'twilio-video';
 import { useAudioInputDevices, useVideoInputDevices } from '../../../hooks/deviceHooks/deviceHooks';
+import useLocalTracks from './useLocalTracks';
 
 jest.mock('../../../hooks/deviceHooks/deviceHooks');
 const mockUseAudioInputDevices = useAudioInputDevices as jest.Mock<any>;
@@ -26,7 +26,7 @@ describe('the useLocalTracks hook', () => {
         await waitForNextUpdate();
       });
 
-      expect(Video.createLocalTracks).toHaveBeenCalledWith({
+      expect(Livekit.createLocalTracks).toHaveBeenCalledWith({
         audio: true,
         video: {
           frameRate: 24,
@@ -47,7 +47,7 @@ describe('the useLocalTracks hook', () => {
         await waitForNextUpdate();
       });
 
-      expect(Video.createLocalTracks).toHaveBeenCalledWith({
+      expect(Livekit.createLocalTracks).toHaveBeenCalledWith({
         audio: {
           deviceId: {
             exact: 'mockAudioDeviceId',
@@ -75,7 +75,7 @@ describe('the useLocalTracks hook', () => {
         await waitForNextUpdate();
       });
 
-      expect(Video.createLocalTracks).toHaveBeenCalledWith({
+      expect(Livekit.createLocalTracks).toHaveBeenCalledWith({
         audio: true,
         video: {
           frameRate: 24,
@@ -96,7 +96,7 @@ describe('the useLocalTracks hook', () => {
         await waitForNextUpdate();
       });
 
-      expect(Video.createLocalTracks).toHaveBeenCalledWith({
+      expect(Livekit.createLocalTracks).toHaveBeenCalledWith({
         audio: true,
         video: false,
       });
@@ -112,7 +112,7 @@ describe('the useLocalTracks hook', () => {
         await waitForNextUpdate();
       });
 
-      expect(Video.createLocalTracks).toHaveBeenCalledWith({
+      expect(Livekit.createLocalTracks).toHaveBeenCalledWith({
         audio: false,
         video: {
           frameRate: 24,
@@ -156,7 +156,7 @@ describe('the useLocalTracks hook', () => {
         await waitForNextUpdate();
       });
 
-      expect(Video.createLocalTracks).toHaveBeenCalledTimes(1);
+      expect(Livekit.createLocalTracks).toHaveBeenCalledTimes(1);
     });
 
     it('should not create any tracks when no input devices are present', async () => {
@@ -167,11 +167,11 @@ describe('the useLocalTracks hook', () => {
 
       await result.current.getAudioAndVideoTracks();
 
-      expect(Video.createLocalTracks).not.toHaveBeenCalled();
+      expect(Livekit.createLocalTracks).not.toHaveBeenCalled();
     });
 
     it('should return an error when there is an error creating a track', async () => {
-      (Video.createLocalTracks as jest.Mock<any>).mockImplementationOnce(() => Promise.reject('testError'));
+      (Livekit.createLocalTracks as jest.Mock<any>).mockImplementationOnce(() => Promise.reject('testError'));
       const { result, waitForNextUpdate } = renderHook(useLocalTracks);
 
       act(() => {

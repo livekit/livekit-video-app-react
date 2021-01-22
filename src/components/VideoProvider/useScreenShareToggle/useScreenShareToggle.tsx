@@ -1,11 +1,10 @@
-import { useState, useCallback, useRef } from 'react';
-import { LogLevels, Track, Room } from 'twilio-video';
+import { Room, Track } from 'livekit-client';
+import { useCallback, useRef, useState } from 'react';
 import { ErrorCallback } from '../../../types';
 
 interface MediaStreamTrackPublishOptions {
   name?: string;
   priority: Track.Priority;
-  logLevel: LogLevels;
 }
 
 export default function useScreenShareToggle(room: Room, onError: ErrorCallback) {

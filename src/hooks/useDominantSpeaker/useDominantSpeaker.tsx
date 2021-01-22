@@ -1,6 +1,6 @@
+import { RemoteParticipant } from 'livekit-client';
 import { useEffect, useState } from 'react';
 import useVideoContext from '../useVideoContext/useVideoContext';
-import { RemoteParticipant } from 'twilio-video';
 
 export default function useDominantSpeaker() {
   const { room } = useVideoContext();
@@ -21,7 +21,7 @@ export default function useDominantSpeaker() {
     // event, so we can set the dominantSpeaker to 'null' when they disconnect.
     const handleParticipantDisconnected = (participant: RemoteParticipant) => {
       setDominantSpeaker(prevDominantSpeaker => {
-        return prevDominantSpeaker === participant ? null : prevDominantSpeaker;
+        return prevDominantSpeaker === participant ? undefined : prevDominantSpeaker;
       });
     };
 

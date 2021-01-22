@@ -1,9 +1,9 @@
-import React, { useRef, useEffect } from 'react';
-import { IVideoTrack } from '../../types';
 import { styled } from '@material-ui/core/styles';
-import { Track } from 'twilio-video';
+import { Track } from 'livekit-client';
+import React, { useEffect, useRef } from 'react';
 import useMediaStreamTrack from '../../hooks/useMediaStreamTrack/useMediaStreamTrack';
 import useVideoTrackDimensions from '../../hooks/useVideoTrackDimensions/useVideoTrackDimensions';
+import { IVideoTrack } from '../../types';
 
 const Video = styled('video')({
   width: '100%',
@@ -25,16 +25,18 @@ export default function VideoTrack({ track, isLocal, priority }: VideoTrackProps
   useEffect(() => {
     const el = ref.current;
     el.muted = true;
-    if (track.setPriority && priority) {
-      track.setPriority(priority);
-    }
+    // track priority unsupported
+    // if (track.setPriority && priority) {
+    //   track.setPriority(priority);
+    // }
     track.attach(el);
     return () => {
       track.detach(el);
-      if (track.setPriority && priority) {
-        // Passing `null` to setPriority will set the track's priority to that which it was published with.
-        track.setPriority(null);
-      }
+      // track priority unsupported
+      // if (track.setPriority && priority) {
+      //   // Passing `null` to setPriority will set the track's priority to that which it was published with.
+      //   track.setPriority(null);
+      // }
     };
   }, [track, priority]);
 

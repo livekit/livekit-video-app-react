@@ -1,11 +1,11 @@
+import { FormControl, Grid, MenuItem, Select, Typography } from '@material-ui/core';
+import { LocalAudioTrack } from 'livekit-client';
 import React from 'react';
-import AudioLevelIndicator from '../../AudioLevelIndicator/AudioLevelIndicator';
-import { LocalAudioTrack } from 'twilio-video';
-import { FormControl, MenuItem, Typography, Select, Grid } from '@material-ui/core';
 import { SELECTED_AUDIO_INPUT_KEY } from '../../../constants';
 import { useAudioInputDevices } from '../../../hooks/deviceHooks/deviceHooks';
 import useMediaStreamTrack from '../../../hooks/useMediaStreamTrack/useMediaStreamTrack';
 import useVideoContext from '../../../hooks/useVideoContext/useVideoContext';
+import AudioLevelIndicator from '../../AudioLevelIndicator/AudioLevelIndicator';
 
 export default function AudioInputList() {
   const audioInputDevices = useAudioInputDevices();

@@ -1,40 +1,5 @@
-import { LocalVideoTrack, RemoteVideoTrack, TwilioError } from 'twilio-video';
 import { EventEmitter } from 'events';
-
-declare module 'twilio-video' {
-  interface LocalParticipant {
-    setBandwidthProfile: (bandwidthProfile: BandwidthProfileOptions) => void;
-    publishTrack(track: LocalTrack, options?: { priority: Track.Priority }): Promise<LocalTrackPublication>;
-  }
-
-  interface VideoCodecSettings {
-    simulcast?: boolean;
-  }
-
-  interface LocalTrackPublication {
-    setPriority: (priority: Track.Priority) => void;
-  }
-
-  interface LocalVideoTrack {
-    isSwitchedOff: undefined;
-    setPriority: undefined;
-  }
-
-  interface RemoteVideoTrack {
-    isSwitchedOff: boolean;
-    setPriority: (priority: Track.Priority | null) => void;
-  }
-
-  interface VideoBandwidthProfileOptions {
-    trackSwitchOffMode?: 'predicted' | 'detected' | 'disabled';
-  }
-
-  function testPreflight(
-    subscriberToken: string,
-    publisherToken: string,
-    options?: { duration?: number }
-  ): PreflightTest;
-}
+import { LivekitError, LocalVideoTrack, RemoteVideoTrack } from 'livekit-client';
 
 declare global {
   interface Window {
@@ -54,7 +19,7 @@ declare global {
 
 export type Callback = (...args: any[]) => void;
 
-export type ErrorCallback = (error: TwilioError) => void;
+export type ErrorCallback = (error: LivekitError) => void;
 
 export type IVideoTrack = LocalVideoTrack | RemoteVideoTrack;
 

@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { LocalVideoTrack, RemoteVideoTrack } from 'twilio-video';
+import { LocalVideoTrack, RemoteVideoTrack, TrackEvent } from 'livekit-client';
+import { useEffect, useState } from 'react';
 
 type TrackType = RemoteVideoTrack | LocalVideoTrack | undefined | null;
 
@@ -7,23 +7,23 @@ type TrackType = RemoteVideoTrack | LocalVideoTrack | undefined | null;
 // a track. See: https://www.twilio.com/docs/video/tutorials/using-bandwidth-profile-api#understanding-track-switch-offs
 
 export default function useIsTrackSwitchedOff(track: TrackType) {
-  const [isSwitchedOff, setIsSwitchedOff] = useState(track && track.isSwitchedOff);
+  const [isMuted, setIsMuted] = useState(track && track.isMuted);
 
   useEffect(() => {
     // Reset the value if the 'track' variable changes
-    setIsSwitchedOff(track && track.isSwitchedOff);
+    setIsMuted(track && track.isMuted);
 
     if (track) {
-      const handleSwitchedOff = () => setIsSwitchedOff(true);
-      const handleSwitchedOn = () => setIsSwitchedOff(false);
-      track.on('switchedOff', handleSwitchedOff);
-      track.on('switchedOn', handleSwitchedOn);
+      const handleMuted = () => setIsMuted(true);
+      const handleUnmuted = () => setIsMuted(false);
+      track.on(TrackEvent.Muted, handleMuted);
+      track.on(TrackEvent.Unmuted, handleUnmuted);
       return () => {
-        track.off('switchedOff', handleSwitchedOff);
-        track.off('switchedOn', handleSwitchedOn);
+        track.off(TrackEvent.Muted, handleMuted);
+        track.off(TrackEvent.Unmuted, handleUnmuted);
       };
     }
   }, [track]);
 
-  return !!isSwitchedOff;
+  return !!isMuted;
 }

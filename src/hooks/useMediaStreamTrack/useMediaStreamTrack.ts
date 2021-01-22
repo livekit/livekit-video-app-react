@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { AudioTrack, VideoTrack } from 'twilio-video';
+import { AudioTrack, VideoTrack } from 'livekit-client';
+import { useEffect, useState } from 'react';
 
 /*
  * This hook allows components to reliably use the 'mediaStreamTrack' property of

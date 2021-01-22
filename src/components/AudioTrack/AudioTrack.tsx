@@ -1,5 +1,5 @@
+import { AudioTrack as IAudioTrack } from 'livekit-client';
 import { useEffect, useRef } from 'react';
-import { AudioTrack as IAudioTrack } from 'twilio-video';
 import { useAppState } from '../../state';
 
 interface AudioTrackProps {

@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Participant, Room } from 'twilio-video';
+import { Participant, Room } from 'livekit-client';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 type selectedParticipantContextType = [Participant | null, (participant: Participant) => void];
 

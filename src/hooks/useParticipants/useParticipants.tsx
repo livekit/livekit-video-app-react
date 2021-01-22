@@ -1,5 +1,5 @@
+import { RemoteParticipant } from 'livekit-client';
 import { useEffect, useState } from 'react';
-import { RemoteParticipant } from 'twilio-video';
 import useDominantSpeaker from '../useDominantSpeaker/useDominantSpeaker';
 import useVideoContext from '../useVideoContext/useVideoContext';
 

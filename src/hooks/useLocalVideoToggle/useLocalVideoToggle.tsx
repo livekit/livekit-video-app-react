@@ -1,4 +1,4 @@
-import { LocalVideoTrack } from 'twilio-video';
+import { LocalVideoTrack } from 'livekit-client';
 import { useCallback, useRef, useState } from 'react';
 import useVideoContext from '../useVideoContext/useVideoContext';
 
@@ -25,7 +25,7 @@ export default function useLocalVideoToggle() {
       } else {
         setIspublishing(true);
         getLocalVideoTrack({ deviceId: { exact: previousDeviceIdRef.current } })
-          .then((track: LocalVideoTrack) => localParticipant?.publishTrack(track, { priority: 'low' }))
+          .then((track: LocalVideoTrack) => localParticipant?.publishTrack(track))
           .catch(onError)
           .finally(() => setIspublishing(false));
       }

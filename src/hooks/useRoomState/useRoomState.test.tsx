@@ -1,8 +1,8 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import EventEmitter from 'events';
-import { Room } from 'twilio-video';
-import useRoomState from './useRoomState';
+import { Room, RoomState } from 'livekit-client';
 import useVideoContext from '../useVideoContext/useVideoContext';
+import useRoomState from './useRoomState';
 
 jest.mock('../useVideoContext/useVideoContext');
 
@@ -28,7 +28,7 @@ describe('the useRoomState hook', () => {
   });
 
   it('should return "connected" if the room state is connected', () => {
-    mockRoom.state = 'connected';
+    mockRoom.state = RoomState.Connected;
     const { result } = renderHook(useRoomState);
     expect(result.current).toBe('connected');
   });
@@ -36,39 +36,39 @@ describe('the useRoomState hook', () => {
   it('should respond to the rooms "reconnecting" event', () => {
     const { result } = renderHook(useRoomState);
     act(() => {
-      mockRoom.state = 'reconnecting';
-      mockRoom.emit('reconnecting');
+      mockRoom.state = RoomState.Reconnecting;
+      mockRoom.emit(RoomState.Reconnecting);
     });
-    expect(result.current).toBe('reconnecting');
+    expect(result.current).toBe(RoomState.Reconnecting);
   });
 
   it('should respond to the rooms "reconnected" event', () => {
     const { result } = renderHook(useRoomState);
     act(() => {
-      mockRoom.state = 'connected';
-      mockRoom.emit('reconnected');
+      mockRoom.state = RoomState.Connected;
+      mockRoom.emit(RoomState.Reconnecting);
     });
-    expect(result.current).toBe('connected');
+    expect(result.current).toBe(RoomState.Connected);
   });
 
   it('should respond to the rooms "disconnected" event', () => {
-    mockRoom.state = 'connected';
+    mockRoom.state = RoomState.Connected;
     const { result } = renderHook(useRoomState);
-    expect(result.current).toBe('connected');
+    expect(result.current).toBe(RoomState.Connected);
     act(() => {
-      mockRoom.state = 'disconnected';
-      mockRoom.emit('disconnected');
+      mockRoom.state = RoomState.Disconnected;
+      mockRoom.emit(RoomState.Disconnected);
     });
-    expect(result.current).toBe('disconnected');
+    expect(result.current).toBe(RoomState.Disconnected);
   });
 
   it('should update when a new room object is provided', () => {
     const { result, rerender } = renderHook(useRoomState);
-    expect(result.current).toBe('disconnected');
+    expect(result.current).toBe(RoomState.Disconnected);
 
     act(() => {
       mockRoom = new EventEmitter() as Room;
-      mockRoom.state = 'connected';
+      mockRoom.state = RoomState.Connected;
       mockedVideoContext.mockImplementation(() => ({
         room: mockRoom,
         isConnecting: false,

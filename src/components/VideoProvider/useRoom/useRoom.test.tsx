@@ -1,11 +1,11 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import EventEmitter from 'events';
+import Livekit, { LocalTrack } from 'livekit-client';
+import * as utils from '../../../utils';
 import { mockRoom } from '../../../__mocks__/twilio-video';
 import useRoom from './useRoom';
-import Video, { LocalTrack } from 'twilio-video';
-import * as utils from '../../../utils';
 
-const mockVideoConnect = Video.connect as jest.Mock<any>;
+const mockVideoConnect = Livekit.connect as jest.Mock<any>;
 
 describe('the useRoom hook', () => {
   beforeEach(jest.clearAllMocks);
@@ -24,7 +24,7 @@ describe('the useRoom hook', () => {
     });
     expect(result.current.isConnecting).toBe(true);
     await waitForNextUpdate();
-    expect(Video.connect).toHaveBeenCalledTimes(1);
+    expect(Livekit.connect).toHaveBeenCalledTimes(1);
     expect(result.current.room.disconnect).not.toHaveBeenCalled();
     expect(result.current.isConnecting).toBe(false);
   });

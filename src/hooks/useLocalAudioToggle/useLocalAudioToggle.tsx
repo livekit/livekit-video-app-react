@@ -1,4 +1,4 @@
-import { LocalAudioTrack } from 'twilio-video';
+import { LocalAudioTrack } from 'livekit-client';
 import { useCallback } from 'react';
 import useIsTrackEnabled from '../useIsTrackEnabled/useIsTrackEnabled';
 import useVideoContext from '../useVideoContext/useVideoContext';
@@ -10,7 +10,7 @@ export default function useLocalAudioToggle() {
 
   const toggleAudioEnabled = useCallback(() => {
     if (audioTrack) {
-      audioTrack.isEnabled ? audioTrack.disable() : audioTrack.enable();
+      audioTrack.isMuted ? audioTrack.mute() : audioTrack.unmute();
     }
   }, [audioTrack]);
 

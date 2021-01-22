@@ -1,4 +1,4 @@
-import { VideoTrack } from 'twilio-video';
+import { VideoTrack } from 'livekit-client';
 
 export type RenderDimensionValue =
   | 'low'

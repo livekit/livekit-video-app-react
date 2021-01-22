@@ -1,6 +1,6 @@
-import { DEFAULT_VIDEO_CONSTRAINTS, SELECTED_AUDIO_INPUT_KEY, SELECTED_VIDEO_INPUT_KEY } from '../../../constants';
+import Livekit, { CreateLocalTrackOptions, LocalAudioTrack, LocalVideoTrack } from 'livekit-client';
 import { useCallback, useState } from 'react';
-import Video, { LocalVideoTrack, LocalAudioTrack, CreateLocalTrackOptions } from 'twilio-video';
+import { DEFAULT_VIDEO_CONSTRAINTS, SELECTED_AUDIO_INPUT_KEY, SELECTED_VIDEO_INPUT_KEY } from '../../../constants';
 import { useAudioInputDevices, useVideoInputDevices } from '../../../hooks/deviceHooks/deviceHooks';
 
 export default function useLocalTracks() {
@@ -21,7 +21,7 @@ export default function useLocalTracks() {
       options.deviceId = { exact: deviceId };
     }
 
-    return Video.createLocalAudioTrack(options).then(newTrack => {
+    return Livekit.createLocalAudioTrack(options).then(newTrack => {
       setAudioTrack(newTrack);
       return newTrack;
     });
@@ -34,7 +34,7 @@ export default function useLocalTracks() {
       ...newOptions,
     };
 
-    return Video.createLocalVideoTrack(options).then(newTrack => {
+    return Livekit.createLocalVideoTrack(options).then(newTrack => {
       setVideoTrack(newTrack);
       return newTrack;
     });
@@ -72,7 +72,7 @@ export default function useLocalTracks() {
       audio: hasSelectedAudioDevice ? { deviceId: { exact: selectedAudioDeviceId! } } : hasAudio,
     };
 
-    return Video.createLocalTracks(localTrackConstraints)
+    return Livekit.createLocalTracks(localTrackConstraints)
       .then(tracks => {
         const videoTrack = tracks.find(track => track.kind === 'video');
         const audioTrack = tracks.find(track => track.kind === 'audio');

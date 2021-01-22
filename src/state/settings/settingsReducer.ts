@@ -1,11 +1,11 @@
+import { Track } from 'livekit-client';
 import { isMobile } from '../../utils';
 import { RenderDimensionValue } from './renderDimensions';
-import { Track, VideoBandwidthProfileOptions } from 'twilio-video';
 
 export interface Settings {
-  trackSwitchOffMode: VideoBandwidthProfileOptions['trackSwitchOffMode'];
+  // trackSwitchOffMode: VideoBandwidthProfileOptions['trackSwitchOffMode'];
   dominantSpeakerPriority?: Track.Priority;
-  bandwidthProfileMode: VideoBandwidthProfileOptions['mode'];
+  // bandwidthProfileMode: VideoBandwidthProfileOptions['mode'];
   maxTracks: string;
   maxAudioBitrate: string;
   renderDimensionLow?: RenderDimensionValue;
@@ -21,9 +21,9 @@ export interface SettingsAction {
 }
 
 export const initialSettings: Settings = {
-  trackSwitchOffMode: undefined,
+  // trackSwitchOffMode: undefined,
   dominantSpeakerPriority: 'standard',
-  bandwidthProfileMode: 'collaboration',
+  // bandwidthProfileMode: 'collaboration',
   maxTracks: isMobile ? '5' : '10',
   maxAudioBitrate: '16000',
   renderDimensionLow: 'low',

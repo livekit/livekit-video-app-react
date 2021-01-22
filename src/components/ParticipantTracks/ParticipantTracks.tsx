@@ -1,7 +1,7 @@
+import { Participant, Track } from 'livekit-client';
 import React from 'react';
-import { Participant, Track } from 'twilio-video';
-import Publication from '../Publication/Publication';
 import usePublications from '../../hooks/usePublications/usePublications';
+import Publication from '../Publication/Publication';
 
 interface ParticipantTracksProps {
   participant: Participant;

@@ -1,16 +1,15 @@
-import React from 'react';
-import useTrack from '../../hooks/useTrack/useTrack';
-import AudioTrack from '../AudioTrack/AudioTrack';
-import VideoTrack from '../VideoTrack/VideoTrack';
-
-import { IVideoTrack } from '../../types';
 import {
   AudioTrack as IAudioTrack,
   LocalTrackPublication,
   Participant,
   RemoteTrackPublication,
   Track,
-} from 'twilio-video';
+} from 'livekit-client';
+import React from 'react';
+import useTrack from '../../hooks/useTrack/useTrack';
+import { IVideoTrack } from '../../types';
+import AudioTrack from '../AudioTrack/AudioTrack';
+import VideoTrack from '../VideoTrack/VideoTrack';
 
 interface PublicationProps {
   publication: LocalTrackPublication | RemoteTrackPublication;

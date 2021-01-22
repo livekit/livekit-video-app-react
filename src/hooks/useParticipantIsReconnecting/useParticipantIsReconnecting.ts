@@ -1,5 +1,5 @@
+import { Participant } from 'livekit-client';
 import { useEffect, useState } from 'react';
-import { Participant } from 'twilio-video';
 
 export default function useParticipantIsReconnecting(participant: Participant) {
   const [isReconnecting, setIsReconnecting] = useState(false);

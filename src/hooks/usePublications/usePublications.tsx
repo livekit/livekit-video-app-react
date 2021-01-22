@@ -1,5 +1,5 @@
+import { LocalTrackPublication, Participant, RemoteTrackPublication } from 'livekit-client';
 import { useEffect, useState } from 'react';
-import { LocalTrackPublication, Participant, RemoteTrackPublication } from 'twilio-video';
 
 type TrackPublication = LocalTrackPublication | RemoteTrackPublication;
 

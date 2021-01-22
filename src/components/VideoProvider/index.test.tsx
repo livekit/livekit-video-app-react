@@ -1,14 +1,14 @@
-import { EventEmitter } from 'events';
-import React from 'react';
 import { renderHook } from '@testing-library/react-hooks';
-import { Room, TwilioError } from 'twilio-video';
+import { EventEmitter } from 'events';
+import { LivekitError, Room } from 'livekit-client';
+import React from 'react';
+import useVideoContext from '../../hooks/useVideoContext/useVideoContext';
 import { VideoProvider } from './index';
-import useLocalTracks from './useLocalTracks/useLocalTracks';
-import useRoom from './useRoom/useRoom';
+import useHandleOnDisconnect from './useHandleOnDisconnect/useHandleOnDisconnect';
 import useHandleRoomDisconnectionErrors from './useHandleRoomDisconnectionErrors/useHandleRoomDisconnectionErrors';
 import useHandleTrackPublicationFailed from './useHandleTrackPublicationFailed/useHandleTrackPublicationFailed';
-import useHandleOnDisconnect from './useHandleOnDisconnect/useHandleOnDisconnect';
-import useVideoContext from '../../hooks/useVideoContext/useVideoContext';
+import useLocalTracks from './useLocalTracks/useLocalTracks';
+import useRoom from './useRoom/useRoom';
 
 const mockRoom = new EventEmitter() as Room;
 const mockOnDisconnect = jest.fn();
@@ -65,7 +65,7 @@ describe('the VideoProvider component', () => {
       </VideoProvider>
     );
     const { result } = renderHook(useVideoContext, { wrapper });
-    result.current.onError({} as TwilioError);
+    result.current.onError({} as LivekitError);
     expect(mockOnError).toHaveBeenCalledWith({});
   });
 });

@@ -1,6 +1,6 @@
-import React from 'react';
 import { styled } from '@material-ui/core/styles';
-import { Participant } from 'twilio-video';
+import { Participant } from 'livekit-client';
+import React from 'react';
 import useParticipantNetworkQualityLevel from '../../hooks/useParticipantNetworkQualityLevel/useParticipantNetworkQualityLevel';
 
 const Container = styled('div')({

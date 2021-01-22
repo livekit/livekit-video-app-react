@@ -1,19 +1,17 @@
-import React from 'react';
-import clsx from 'clsx';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { LocalAudioTrack, LocalVideoTrack, Participant, RemoteAudioTrack, RemoteVideoTrack } from 'twilio-video';
-
-import AudioLevelIndicator from '../AudioLevelIndicator/AudioLevelIndicator';
-import AvatarIcon from '../../icons/AvatarIcon';
-import NetworkQualityLevel from '../NetworkQualityLevel/NetworkQualityLevel';
-import PinIcon from './PinIcon/PinIcon';
-import ScreenShareIcon from '../../icons/ScreenShareIcon';
 import Typography from '@material-ui/core/Typography';
-
+import clsx from 'clsx';
+import { LocalAudioTrack, LocalVideoTrack, Participant, RemoteAudioTrack, RemoteVideoTrack } from 'livekit-client';
+import React from 'react';
 import useIsTrackSwitchedOff from '../../hooks/useIsTrackSwitchedOff/useIsTrackSwitchedOff';
+import useParticipantIsReconnecting from '../../hooks/useParticipantIsReconnecting/useParticipantIsReconnecting';
 import usePublications from '../../hooks/usePublications/usePublications';
 import useTrack from '../../hooks/useTrack/useTrack';
-import useParticipantIsReconnecting from '../../hooks/useParticipantIsReconnecting/useParticipantIsReconnecting';
+import AvatarIcon from '../../icons/AvatarIcon';
+import ScreenShareIcon from '../../icons/ScreenShareIcon';
+import AudioLevelIndicator from '../AudioLevelIndicator/AudioLevelIndicator';
+import NetworkQualityLevel from '../NetworkQualityLevel/NetworkQualityLevel';
+import PinIcon from './PinIcon/PinIcon';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

@@ -1,13 +1,13 @@
-import React, { useState, useEffect, FormEvent } from 'react';
-import DeviceSelectionScreen from './DeviceSelectionScreen/DeviceSelectionScreen';
+import React, { FormEvent, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import Video from 'twilio-video';
+import useVideoContext from '../../hooks/useVideoContext/useVideoContext';
+import { useAppState } from '../../state';
 import IntroContainer from '../IntroContainer/IntroContainer';
+import DeviceSelectionScreen from './DeviceSelectionScreen/DeviceSelectionScreen';
 import MediaErrorSnackbar from './MediaErrorSnackbar/MediaErrorSnackbar';
 import PreflightTest from './PreflightTest/PreflightTest';
 import RoomNameScreen from './RoomNameScreen/RoomNameScreen';
-import { useAppState } from '../../state';
-import { useParams } from 'react-router-dom';
-import useVideoContext from '../../hooks/useVideoContext/useVideoContext';
-import Video from 'twilio-video';
 
 export enum Steps {
   roomNameStep,

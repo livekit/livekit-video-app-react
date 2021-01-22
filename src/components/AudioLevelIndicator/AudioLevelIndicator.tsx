@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { AudioTrack, LocalAudioTrack, RemoteAudioTrack } from 'twilio-video';
 import { interval } from 'd3-timer';
+import { AudioTrack, LocalAudioTrack, RemoteAudioTrack } from 'livekit-client';
+import React, { useEffect, useRef, useState } from 'react';
 import useIsTrackEnabled from '../../hooks/useIsTrackEnabled/useIsTrackEnabled';
 import useMediaStreamTrack from '../../hooks/useMediaStreamTrack/useMediaStreamTrack';
 

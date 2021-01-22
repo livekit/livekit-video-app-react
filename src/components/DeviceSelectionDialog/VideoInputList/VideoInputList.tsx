@@ -1,12 +1,12 @@
+import { FormControl, MenuItem, Select, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { LocalVideoTrack } from 'livekit-client';
 import React from 'react';
 import { DEFAULT_VIDEO_CONSTRAINTS, SELECTED_VIDEO_INPUT_KEY } from '../../../constants';
-import { FormControl, MenuItem, Typography, Select } from '@material-ui/core';
-import { LocalVideoTrack } from 'twilio-video';
-import { makeStyles } from '@material-ui/core/styles';
-import VideoTrack from '../../VideoTrack/VideoTrack';
+import { useVideoInputDevices } from '../../../hooks/deviceHooks/deviceHooks';
 import useMediaStreamTrack from '../../../hooks/useMediaStreamTrack/useMediaStreamTrack';
 import useVideoContext from '../../../hooks/useVideoContext/useVideoContext';
-import { useVideoInputDevices } from '../../../hooks/deviceHooks/deviceHooks';
+import VideoTrack from '../../VideoTrack/VideoTrack';
 
 const useStyles = makeStyles({
   preview: {
